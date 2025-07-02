@@ -1,3 +1,4 @@
+import "package:app/screens/ForgotPassword.dart";
 import "package:app/screens/SignUp.dart";
 import "package:flutter/material.dart" ; 
 
@@ -85,14 +86,14 @@ class _LoginState extends State<Login> {
           onTap: () => 
             Navigator.push(
               context ,
-              MaterialPageRoute(builder: (context) => SignUp()) 
+              MaterialPageRoute(builder: (context) => ForgotPassword()) 
             ) 
            , 
            hoverColor: Colors.transparent, 
            highlightColor: Colors.transparent , 
            focusColor: Colors.transparent, 
            splashColor: Colors.transparent,
-          child: Text("don't have an account",style: TextStyle(decoration: TextDecoration.underline  , backgroundColor: Colors.transparent),)),
+          child: Text("forgot password",style: TextStyle(decoration: TextDecoration.underline  , backgroundColor: Colors.transparent),)),
       )
      ],
     ) ,
@@ -145,7 +146,23 @@ class _LoginState extends State<Login> {
                  )),
                 ),
               ),
-                          )
+                          ) ,
+                        Padding(
+                          padding: const EdgeInsets.only(top:18.0),
+                          child: InkWell(
+                            onTap: () => 
+                              Navigator.push(
+                                context ,
+                                MaterialPageRoute(builder: (context) => SignUp()) 
+                              ) 
+                             , 
+                             hoverColor: Colors.transparent, 
+                             highlightColor: Colors.transparent , 
+                             focusColor: Colors.transparent, 
+                             splashColor: Colors.transparent,
+                            child: Text("Don't have an account?",style: TextStyle(fontSize: 16.0),)),
+                        ),
+                     
          ],
          ),
        ),

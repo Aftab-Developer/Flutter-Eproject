@@ -29,21 +29,16 @@ class _SplachScreenState extends State<SplachScreen> {
         children: [
           Container(  
             
-            width: 300,
-            height: 300,
+            width: 250,
+            height: 250,
             child:  ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child:  Image.asset("assets/images/final_logo.png" ,
+              child:  Image.asset("assets/images/logo.png" ,
               fit: BoxFit.contain,
               ),
             ),
           ) ,
-          // Container(
-          //   margin: EdgeInsets.only(left: 40.0),
-          //   child: Text("Shop the Best",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),)) ,
-            //  Container(
-            // margin: EdgeInsets.only(left: 0.0),
-            // child: Text("Laptops",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),))
+          
         ],
        ), 
        
