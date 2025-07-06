@@ -1,4 +1,5 @@
 import "package:app/screens/ForgotPassword.dart";
+import "package:app/screens/GuideScreen.dart";
 import "package:app/screens/SignUp.dart";
 import "package:flutter/material.dart" ; 
 
@@ -86,28 +87,37 @@ class _LoginState extends State<Login> {
           onTap: () => 
             Navigator.push(
               context ,
-              MaterialPageRoute(builder: (context) => ForgotPassword()) 
+              MaterialPageRoute(builder: (context) =>  ForgotPassword()) 
             ) 
            , 
            hoverColor: Colors.transparent, 
            highlightColor: Colors.transparent , 
            focusColor: Colors.transparent, 
            splashColor: Colors.transparent,
-          child: Text("forgot password",style: TextStyle(decoration: TextDecoration.underline  , backgroundColor: Colors.transparent),)),
+          child: Text("forgot password?",style: TextStyle(decoration: TextDecoration.underline  , backgroundColor: Colors.transparent),)),
       )
      ],
     ) ,
          Padding(
               padding: const EdgeInsets.only(left:30.0,right: 30.0,top: 30.0),
               child: InkWell(
-                child: Container( 
+                highlightColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  splashColor: Colors.transparent, 
+                  hoverColor: Colors.transparent,
+                  onTap: () => 
+                    Navigator.push(
+                      context ,
+                      MaterialPageRoute(builder: (context) =>  GuideScreen()) 
+                    ) ,
+                child: Container(  
                  width: MediaQuery.of(context).size.width,
                  height: 65.0, 
                  decoration: BoxDecoration(
                  color: Colors.black,
                 borderRadius: BorderRadius.circular(30.0)
                  ),
-                 child: Center(child: Text("Login Here",style: TextStyle(color: Colors.white,fontSize: 16.0),)),
+                 child: Center(child: Text("Login",style: TextStyle(color: Colors.white,fontSize: 16.0),)),
                 ),
               ),
                           ) ,
