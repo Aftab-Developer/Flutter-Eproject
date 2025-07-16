@@ -20,7 +20,12 @@ class HomeScreen extends StatelessWidget  {
     return MaterialApp(  
       debugShowCheckedModeBanner: false, 
       theme:  ThemeData(
-        fontFamily: 'Poppins',
+        fontFamily: 'Poppins', 
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: Colors.blue , 
+          selectionHandleColor: Colors.blue
+
+        )
       ),
       title: "Splach Screen", 
       home:SplachScreen(),

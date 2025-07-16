@@ -1,4 +1,6 @@
-    import 'package:flutter/material.dart';
+
+import 'package:app/screens/RootScreen.dart';
+import 'package:flutter/material.dart';
 
     class GuideScreen extends StatefulWidget {
       const GuideScreen({super.key});
@@ -29,8 +31,8 @@
 
       @override
       void dispose() {
-        _pageController.dispose();
         super.dispose();
+        _pageController.dispose();
       }
 
       @override
@@ -84,23 +86,32 @@
                       const SizedBox(height: 20),
                       index == 2 ? Padding(
                         padding: const EdgeInsets.all(18.0),
-                        child: Container(
-                          width: double.infinity,
-                          height: 60, 
-                          decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 108, 99, 255),
-                          borderRadius: BorderRadius.circular(30.0)
-                          ), child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              
-                                Text("Continue", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,letterSpacing: 1)),
+                        child: InkWell( 
+                          onTap:(){
+                             Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => Rootscreen() ));
+                          }, 
+                          focusColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          child: Container(
+                            width: double.infinity,
+                            height: 60, 
+                            decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 108, 99, 255),
+                            borderRadius: BorderRadius.circular(30.0)
+                            ), child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                
+                                  Text("Continue", style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20,letterSpacing: 1)),
+                               
+                                
+                              ],
+                            )
                              
-                              
-                            ],
-                          )
-                           
+                          ),
                         ),
                       ): Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +122,7 @@
                               width: 10.0,
                               height: 10.0,
                               decoration: BoxDecoration(
-                                color: i == index ? Color.fromARGB(255, 108, 99, 255): Colors.grey,
+                                color: i == index ? Color.fromARGB(255, 108, 99, 255): Colors.black,
                                 shape: BoxShape.circle,
                               ),
                             ),
@@ -122,7 +133,8 @@
                  );
                   })
                 ,
-              )
+              ) ,
+              
             ],
           ),
         );
