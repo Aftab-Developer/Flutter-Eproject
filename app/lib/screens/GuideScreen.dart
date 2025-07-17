@@ -46,9 +46,22 @@ import 'package:flutter/material.dart';
                 alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 30.0),
-                  child: Text(
-                    'Skip',
-                    style: TextStyle(fontSize: 16),
+                  child: InkWell(  
+                    hoverColor: Colors.transparent, 
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    
+                    onTap: (){
+                      Navigator
+                      .pushReplacement(
+                      context ,
+                      MaterialPageRoute(builder: (context ) => Rootscreen()
+                      )) ;
+                    },
+                    child: Text(
+                      'Skip',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
               ),

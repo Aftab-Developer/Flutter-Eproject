@@ -8,105 +8,92 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  String selectedOS = "Windows";
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      
-
-      body:
-      SafeArea(
-        child: Column( 
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: 
-                  Container( 
-                    width: 350 ,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200] , 
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.grey.shade300, width: 1),
-                    ),
-                    child: Row( 
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Search...',
-                              prefixIcon: Icon(Icons.search),
-                              
-                            ),
-                          ),
-                        ),
-                       DropdownMenu<String>(
-                    initialSelection: "Windows",
-                    dropdownMenuEntries: const [
-                      DropdownMenuEntry(value: "Windows", label: "Windows"),
-                      DropdownMenuEntry(value: "Linux", label: "Linux"),
-                      DropdownMenuEntry(value: "MacOs", label: "MacOs"),
-                    ],
-
-                    inputDecorationTheme: const InputDecorationTheme(
-                      isDense: true,
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,  
-                      contentPadding: EdgeInsets.zero
-                    ),
-                    
-                    textStyle: TextStyle(fontSize: 14),
-                    width:120, 
-                  ), 
-                  Container(
-                    margin: EdgeInsets.only(right: 19.0),
-                    width: 30,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle
-                    ),
-                    child: Icon(Icons.search),
-                  )
-
- ],
-                    ),
-                  ),
-                  
-            ) ,
-            
-        
-          Expanded(
-            child: ListView.builder(
-            itemCount: 10,
-            itemBuilder: (context,index){
-            
-            return Container( 
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey.shade300, width: 1),
-                ),
-              ),
-              child: ListTile( 
-                
-                title: Text('Search Result $index'),
-                subtitle: Text('Details for search result $index'),
-                trailing: Icon(Icons.arrow_forward),
-              ),
-            );
-            
-                  }),
+    return Scaffold(
+      appBar: AppBar(
+        title:Container(
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.black ,
+                width: 1
+              )
+            )
           ),
-        ]),
-      )
-
-     
-       
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded( 
+                flex: 3,
+                child: TextField( 
+                  cursorColor: Colors.black,
+                  keyboardType: TextInputType.webSearch,
+                  decoration: InputDecoration(
+                    hintText: "Search", 
+                    border: InputBorder.none
+                  ),
+                ),
+              ) ,
+              Expanded(
+                flex: 2,
+                child: DropdownMenu( 
+                inputDecorationTheme: InputDecorationTheme(
+                  focusedBorder: InputBorder.none ,
+                  enabledBorder: InputBorder.none ,
+                  disabledBorder: InputBorder.none
+                ),
+                
+                initialSelection: "Mac", 
+              
+                dropdownMenuEntries: [
+                DropdownMenuEntry(value: "Windows", label: "Windows.."),
+                DropdownMenuEntry(value: "Linux", label: "Linux"),
+                DropdownMenuEntry(value: "Mac", label: "Mac"),
+              ]))  ,
+              Expanded(
+                flex: 1,
+                child: Container(
+                child: Center(child: Icon(Icons.search),),
+              ))
+            ],
+          ),
+        )
+      ),
+      body: 
+      Column( 
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(height: 20,) ,
+             Expanded(
+               child: ListView.builder(
+                     itemCount: 5,
+                     itemExtent: 60,
+                     itemBuilder: (context,i) {
+                     return Padding(
+                       padding: const EdgeInsets.only(bottom: 20),
+                       child: Container(
+                        
+                        
+                         child: ListTile(
+                           leading: Container(
+                            width: 50,
+                            height: 50,
+                            child: ClipRRect( 
+                              borderRadius: BorderRadius.circular(50),
+                              child: Image.asset("assets/images/onBoarding1.png",fit: BoxFit.contain,))),
+                           title: Text("Search Title"),
+                           trailing: Icon(Icons.arrow_right),
+                         ),
+                       ),
+                     ) ;
+                           }),
+             )
+        ],
+      ),
     );
-    
   }
 }

@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget  {
         )
       ),
       title: "Splach Screen", 
+      color: Colors.white,
       home:SplachScreen(),
     ) ;
   }

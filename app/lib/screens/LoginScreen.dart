@@ -85,7 +85,7 @@ class _LoginState extends State<Login> {
         padding: const EdgeInsets.only(top: 20.0 , right: 30.0),
         child: InkWell(
           onTap: () => 
-            Navigator.push(
+            Navigator.pushReplacement(
               context ,
               MaterialPageRoute(builder: (context) =>  ForgotPassword()) 
             ) 
