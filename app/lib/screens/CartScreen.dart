@@ -12,7 +12,7 @@ class Cartscreen extends StatefulWidget {
 class _CartscreenState extends State<Cartscreen> {
   @override
   Widget build(BuildContext context) {  
-    final bool isCartEmpty = true ;
+    final bool isCartEmpty = false ;
     return Scaffold( 
       backgroundColor: Colors.white,
       
