@@ -1,4 +1,7 @@
-const AdminModel = require("../models/Admin_model");
+const sendMail = require("../helper/sendMail");
+const AdminModel = require("../models/Admin_model"); 
+const UserModel = require("../models/User_Model"); 
+
 
 async function AdminLoginController(req,res)  {
  try {
@@ -29,7 +32,7 @@ async function AdminLoginController(req,res)  {
     secure:false
 }).json({message:`${isUserExsists.username} login success`,success:true})
  } catch (error) {
-    return res.json({message:"internal server error",success:false}).status(500) ;
+    return res.json({message:"some thing went wrong plse try again later ...",success:false}).status(500) ;
     
  }
 } 
@@ -39,5 +42,6 @@ async function AdminCreationTemp (req,res) {
   await AdminModel.create(req.body); 
   return res.json({message:"Created",success:true}).status(201) ;
 }
+ 
 
 module.exports = {AdminLoginController , AdminCreationTemp} ; 

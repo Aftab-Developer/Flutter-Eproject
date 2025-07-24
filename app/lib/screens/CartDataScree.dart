@@ -87,8 +87,8 @@ class _CartdatascreeState extends State<Cartdatascree> {
                           
                           Container( 
                             
-                            width: 40,
-                            height: 40,
+                            width: 30,
+                            height: 30,
                             decoration: BoxDecoration(
                               color: Colors.black ,
                               shape: BoxShape.circle ,
@@ -101,13 +101,13 @@ class _CartdatascreeState extends State<Cartdatascree> {
                           Padding(
                             padding: const EdgeInsets.only(left:8.0,right:8.0),
                             child: Text("4",style: TextStyle(
-                              fontSize: 23 ,
+                              fontSize: 17 ,
                               fontWeight: FontWeight.bold
                             ),),
                           ) ,
                            Container(
-                            width: 40,
-                            height: 40,
+                            width: 30,
+                            height: 30,
                             decoration: BoxDecoration(
                               color: Colors.black ,
                               shape: BoxShape.circle ,

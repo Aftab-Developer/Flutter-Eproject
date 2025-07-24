@@ -62,7 +62,7 @@ async function createProductController(req,res) {
      }) ; 
      req.pipe(busboy) ;
     } catch (error) {
-    return res.json({message:"internal server error",success:false}).status(500) ;
+    return res.json({message:"some thing went wrong plse try agai later ...",success:false}).status(500) ;
         
     }
 }   

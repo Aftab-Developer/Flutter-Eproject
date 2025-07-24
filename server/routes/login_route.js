@@ -1,11 +1,12 @@
 const express = require('express'); 
 const router  = express.Router() ;   
 const Auth = require("../middlewares/auth_middleware.js")
-const {LoginController,SignUpController,demoController,LogOutController} = require("../controllers/auth_controller.js")  
+const {LoginController,SignUpController,demoController,LogOutController,EmailVerificationController} = require("../controllers/auth_controller.js")  
 const {AdminLoginController,AdminCreationTemp} = require("../controllers/admin_controller.js"); 
 const Auth_Admin = require('../middlewares/admin_auth_middleware.js');
 
 router.route("/login").post(LoginController) ;
+router.route("/send-mail").post(EmailVerificationController) ;
 router.route("/demoAuth").get(Auth ,demoController) ;
 router.route("/demoAuth").get(Auth ,demoController) ;
 router.route("/logout").get(Auth ,LogOutController) ;
