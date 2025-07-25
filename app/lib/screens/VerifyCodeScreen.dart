@@ -112,7 +112,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     "Verify", 
                     
                     style: TextStyle(
-                      letterSpacing: .7,
+                      letterSpacing: 1.5,
                       color: Colors.white, // Button text color white
                       fontFamily: "Poppins",
                       fontSize: 18, // Font size for button text

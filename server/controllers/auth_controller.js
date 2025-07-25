@@ -115,7 +115,6 @@ async function EmailVerificationController(req, res) {
     user.otp = otp;
     user.otp_expiry = otp_expiry;
     await user.save();
-
     return res.status(200).json({
       message: "An OTP code was sent to your recovery email...",
       success: true,
@@ -127,6 +126,40 @@ async function EmailVerificationController(req, res) {
       success: false,
     });
   }
+} 
+
+
+async function CheckOtpValidContoller(req,res) { 
+  try { 
+    console.log("otp") ;
+    const {otp} = req.body ; 
+    console.log(req.body) ;
+    console.log(req.params.email) ;
+
+    const user = await userModel.findOne({email:req.params.email}); 
+    if(!otp && !user) {
+      return res.status(400).json({ message: "Please provide all fields", success: false });
+
+    } 
+    if(!user.otp === otp ) {
+      return res.status(400).json({ message: "Invalid Otp", success: false });
+    }         
+    else if(!user.otp_expiry > Date.now()) {
+      return res.status(400).json({ message: "Otp has been expired ", success: false });
+    
+    }   
+    user.otp = null ; 
+    user.otp_expiry = null ; 
+    await user.save() ;
+    return res.status(200).json({ message: "Otp verification success", success: true });
+  
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong, please try again later.",
+      success: false,
+    });
+  }
+
 }
 
-module.exports = { SignUpController, LoginController, demoController, LogOutController, EmailVerificationController };
+module.exports = { SignUpController, LoginController, demoController, LogOutController, EmailVerificationController,CheckOtpValidContoller };
