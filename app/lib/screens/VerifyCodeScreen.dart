@@ -42,14 +42,14 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         textAlign: TextAlign.center,
         maxLength: 1,
         keyboardType: TextInputType.number,
-        style: TextStyle(fontSize: 24, fontFamily: "Poppins", color: Colors.white),
+        style: TextStyle(fontSize: 24, fontFamily: "Poppins", color: Colors.black),
         decoration: InputDecoration(
           counterText: '',
           filled: true,
-          fillColor: Colors.black,
+          fillColor: Colors.white, // Input field ka background white
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Colors.black), // Border black
           ),
         ),
         onChanged: (value) {
@@ -66,12 +66,19 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white, // Body ka background white
       appBar: AppBar(
-        title: Text("Verify Code", style: TextStyle(fontFamily: "Poppins")),
-        backgroundColor: Colors.black,
+        title: Text(
+          "Verify Code",
+          style: TextStyle(
+            fontFamily: "Poppins",
+            color: Colors.black, // AppBar ka text color black
+          ),
+        ),
+        backgroundColor: Colors.white, // AppBar background white
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.black), // AppBar icons ka color black
+        centerTitle: true,  // <-- Center the title here
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -79,7 +86,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           children: [
             Text(
               "Enter the 6-digit code sent to your email",
-              style: TextStyle(fontFamily: "Poppins", color: Colors.white),
+              style: TextStyle(
+                fontFamily: "Poppins",
+                color: Colors.black, // Text color black
+                fontSize: 20,    // Font size
+                fontWeight: FontWeight.w600,
+              ),
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 30),
@@ -88,19 +100,27 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
               children: List.generate(6, (index) => _buildOtpField(index)),
             ),
             SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: _onOtpSubmit,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-              ),
-              child: Text(
-                "Verify",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: "Poppins",
+            SizedBox(
+              width: double.infinity,  // Full width button
+              child: ElevatedButton(
+                onPressed: _onOtpSubmit,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.black, // Button ka background color black
+                  minimumSize: Size(double.infinity, 60), // Button height 60px
                 ),
+                  child: Text(
+                    "Verify", 
+                    
+                    style: TextStyle(
+                      letterSpacing: .7,
+                      color: Colors.white, // Button text color white
+                      fontFamily: "Poppins",
+                      fontSize: 18, // Font size for button text
+                      fontWeight: FontWeight.bold, // Bold text
+                    ),
+                  ),
               ),
-            )
+            ),
           ],
         ),
       ),

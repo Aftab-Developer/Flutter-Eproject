@@ -61,16 +61,20 @@ part '../state/auth_state.dart';
   }
   
   Future<void> send_otp_handler(OtpRequest event , Emitter<AuthState> emit) async {
-    try { 
+    try {  
+      print("called otp bloc") ;
       final String? email = event.email ; 
       emit(OtpLoading(loading: true)) ;
     final ApiModel? model =  await repo?.send_otp_handler(email); 
+      print("data otp bloc ${model?.message}") ;
+
       emit(OtpLoading(loading: false)) ;
 
    if(model?.success == true) {
      emit(OtpSuccessState(message: model?.message, success: model?.success)) ;
 
-   } else {
+   } else { 
+    print( model?.message) ;
      emit(OtpFailureState(message: model?.message, success: model?.success)) ;
 
    }

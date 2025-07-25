@@ -50,11 +50,14 @@ class AuthRepo {
   }
    
    Future<ApiModel?> send_otp_handler (String? email) async{
-      try{ 
+      try{  
+        print("otp repo");
         final map = {
           "email":email
         } ;
        final json =  await authData!.send_otp_handler(map); 
+        print("otp repo $json");
+
        ApiModel model = ApiModel.fromMap(json); 
        return model ;
       }catch(e) {
