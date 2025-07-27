@@ -3,7 +3,8 @@ const jwt = require("jsonwebtoken");
 const productModel = require("../models/ProductModel");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
-const sendMail = require("../helper/sendMail");
+const sendMail = require("../helper/sendMail"); 
+const { OAuth2Client } = require('google-auth-library');
 
 async function LoginController(req, res) {
   try {
@@ -131,10 +132,8 @@ async function EmailVerificationController(req, res) {
 
 async function CheckOtpValidContoller(req,res) { 
   try { 
-    console.log("otp") ;
     const {otp} = req.body ; 
-    console.log(req.body) ;
-    console.log(req.params.email) ;
+    
 
     const user = await userModel.findOne({email:req.params.email}); 
     if(!otp && !user) {
@@ -162,4 +161,89 @@ async function CheckOtpValidContoller(req,res) {
 
 }
 
-module.exports = { SignUpController, LoginController, demoController, LogOutController, EmailVerificationController,CheckOtpValidContoller };
+
+async function ResetPasswordController(req,res) {
+  try {
+    const {resetPassword} = req.body;   
+    const email = req.params.email;  
+    
+
+    if(!resetPassword || !email) {
+      return res.status(400).json({ message: "Please provide all fields", success: false });
+      
+    }   
+
+    const hashedPass = await bcrypt.hash(resetPassword,10) ;
+ 
+    const isUpdated = await userModel.updateOne({email},{$set:{password:hashedPass}}) ;  
+   if(!isUpdated){
+      return res.status(400).json({ message: "Please provide all fields", success: false });
+
+   }
+else {
+      return res.status(200).json({ message: "Reset password Success", success: true });
+
+}
+    
+
+
+
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong, please try again later.",
+      success: false,
+    });
+  }
+} 
+
+
+
+
+
+async function GoogleSignInController(req,res) {
+  try {
+    const {username,email,image} = req.body;  
+   if (!username || !email || !image) {
+      return res.status(400).json({ message: "Please provide all fields", success: false });
+    }
+    console.log(req.body);
+    const userExsists = await userModel.findOne({ email });
+    console.log(userExsists); 
+
+    if(!userExsists){
+      await userModel.create({username,email,profile_image:image}) ; 
+    }
+    
+const token =  jwt.sign(
+        {_id : userExsists._id ,
+        
+        username,email},process.env.JWT_SECRECT,{
+          expiresIn:"4h"
+        })  ; 
+
+        return res.cookie("token",token,{ httpOnly: true,
+        maxAge: 4 * 60 * 60 * 1000,
+        samesite: "none",
+        secure: false,}).json(
+          {message:"Successfully login",success:true}
+        )
+    
+
+  } catch (error) {
+    return res.status(500).json({
+      message: "Something went wrong, please try again later.",
+      success: false,
+    });
+  }
+}
+
+module.exports = {
+   SignUpController, 
+   LoginController,
+   demoController,
+    LogOutController,
+     EmailVerificationController,
+     CheckOtpValidContoller,
+     ResetPasswordController,
+     GoogleSignInController 
+    };

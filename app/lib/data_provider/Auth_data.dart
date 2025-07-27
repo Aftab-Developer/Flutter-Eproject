@@ -9,11 +9,8 @@ class AuthData {
     print("called data provider");
     
    final res =  await _dio.post("http://localhost:3000/api/v1/auth/login",data: data , options: Options(
-        validateStatus: (status) {
-        
-          return status! <= 500; 
-        },
-      ),);
+    validateStatus: (status)=>   true 
+   ),);
   print(res.data);
      final dataJson = jsonEncode(res.data); 
      print(dataJson); 
@@ -23,12 +20,9 @@ class AuthData {
 
   Future<dynamic> signup_response_handler(Map<String,dynamic> data) async { 
     print("reached data provider sign up") ;
-   final res =  await _dio.post("http://localhost:3000/api/v1/auth/sign-up",data:data , options: Options(
-        validateStatus: (status) {
-          
-          return status! <= 500;  
-        },
-      ),);   
+   final res =  await _dio.post("http://localhost:3000/api/v1/auth/sign-up",data:data ,options: Options(
+    validateStatus: (status)=>   true 
+   ),);   
    print(res.data) ;
    final json = jsonEncode(res.data) ;   
    print(json);
@@ -41,11 +35,9 @@ class AuthData {
    try {
       print("$map") ;
     print("called data provider otp");
-   final res = await _dio.post("http://localhost:3000/api/v1/auth/send-mail",data: map,options:   Options(
-        validateStatus: (status) {
-          return status! <= 500;  
-        },
-      ),); 
+   final res = await _dio.post("http://localhost:3000/api/v1/auth/send-mail",data: map,options: Options(
+    validateStatus: (status)=>   true 
+   ),); 
    final json = jsonEncode(res.data) ; 
    print(json) ;
 
@@ -55,6 +47,7 @@ class AuthData {
    }
 
   }
+  
   
 
 }

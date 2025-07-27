@@ -75,17 +75,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       }
                     },
                     cursorColor: const Color.fromARGB(255, 108, 99, 255),  
-                    controller: _emailController,
+                    controller: _emailController, 
+                    
                     decoration: InputDecoration(
                     
-                      
-                      focusedBorder: OutlineInputBorder(
+                      contentPadding: EdgeInsets.only(left: 18.0),
+                      focusedBorder: OutlineInputBorder( 
+                        borderRadius: BorderRadius.circular(30.0),
                         borderSide: const BorderSide(
                           color: Color.fromARGB(255, 108, 99, 255),
                           width: 1.0,
                         ),
+                      ), 
+                     
+                      border: OutlineInputBorder( 
+                        borderRadius: BorderRadius.circular(30.0),
+                        borderSide: const BorderSide(
+                          color: Colors.black,
+                          width: 1.0,
+                        ),
                       ),
-                      border: OutlineInputBorder(),
                       labelText: 'Email',
                     ),
                   ),
@@ -129,7 +138,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
                                 Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => OtpVerificationScreen()),
+                              MaterialPageRoute(builder: (context) => OtpVerificationScreen(email:_emailController.text.toString() ,)),
                             );
 
 

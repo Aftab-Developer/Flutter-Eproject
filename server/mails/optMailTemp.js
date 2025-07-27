@@ -66,7 +66,7 @@ const mailTemOtp = ({username = "Aftab", otpCode = 90789 }) => `
     <p>If you didn’t request this, you can safely ignore this email.</p>
 
     <div class="footer">
-      &copy; 2025 YourApp. All rights reserved.
+      &copy; 2025 Shaplon. All rights reserved.
     </div>
   </div>
 </body>

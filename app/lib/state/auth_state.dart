@@ -103,7 +103,4 @@ final class OtpLoading extends AuthState{
     required this.loading
   }) ;
 
-
-
-
-}
+} 
