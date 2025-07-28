@@ -14,7 +14,8 @@ class OtpVerifyAuthCubit extends Cubit<ApiModel>{
     options: Options(validateStatus: (status) => true),
   );
 
-print(res.data);
+print(res.data); 
+print("commit") ;
   final success = res.data?["success"] == true;
   final message = res.data?["message"];
 
